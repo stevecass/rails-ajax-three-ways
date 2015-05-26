@@ -1,6 +1,8 @@
 <%= render @post %>
 <div class="comment_forms">
 <div>
+
+<h3>A remote: true form</h3>
 <%= form_for [@post, @comment], remote: true do |f| %>
   <%= f.label :content %>
   <%= f.text_area :content %>
@@ -9,3 +11,27 @@
 </div>
 
 
+<h3>Standard ajax returning fragment</h3>
+<%= form_for [@post, @comment], html:{class: :standard_ajax} do |f| %>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
+<script>
+// normally you'd put this in a js file of course
+$(document).ready(function(){
+	$('form.standard_ajax').on('submit', function(event){
+		event.preventDefault();
+		console.log(event.target);
+		$.ajax({
+			url: event.target.action,
+			method: event.target.method,
+			data: $(event.target).serialize(),
+			dataType: 'html'
+		}).done(function(response){
+			$(".comments").append(response);
+			event.target.reset();
+		});
+	});
+});
+</script>
