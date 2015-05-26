@@ -13,10 +13,10 @@ u4 = User.create!(username: Faker::Internet.user_name, email: Faker::Internet.em
 users =  [sc, u1, u2, u3, u4]
 
 20.times do
-  BlogPost.create!(user: users.sample, title: Faker::Commerce.product_name, content: Faker::Lorem.paragraph )
+  Post.create!(user: users.sample, title: Faker::Commerce.product_name, content: Faker::Lorem.paragraph )
 end
 
 40.times do
-   bp = BlogPost.all.to_a.sample
+   bp = Post.all.to_a.sample
    bp.comments.create!(user:users.sample, content: Faker::Hacker.say_something_smart)
 end

@@ -1,0 +1,12 @@
+<div class="post" id="post<%= post.id %>">
+  <h4><%= post.title %></h4>
+  <div class="post_body">
+    <%= post.content %>
+  </div>
+  <div><b>Comments:</b>
+  <ol class="comments">
+   <%= render post.comments %>
+  </ol>
+  </div>
+</div>
+
