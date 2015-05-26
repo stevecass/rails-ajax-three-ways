@@ -3,5 +3,10 @@
   <div class="blog_post_body">
     <%= blog_post.content %>
   </div>
+  <div><b>Comments:</b>
+  <ol class="comments">
+   <%= render blog_post.comments %>
+  </ol>
+  </div>
 </div>
 
