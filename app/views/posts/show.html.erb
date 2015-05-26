@@ -21,18 +21,18 @@
 <script>
 // normally you'd put this in a js file of course
 $(document).ready(function(){
-	$('form.standard_ajax').on('submit', function(event){
-		event.preventDefault();
-		$.ajax({
-			url: event.target.action,
-			method: event.target.method,
-			data: $(event.target).serialize(),
-			dataType: 'html'
-		}).done(function(response){
-			$(".comments").append(response);
-			event.target.reset();
-		});
-	});
+  $('form.standard_ajax').on('submit', function(event){
+    event.preventDefault();
+    $.ajax({
+      url: event.target.action,
+      method: event.target.method,
+      data: $(event.target).serialize(),
+      dataType: 'html'
+    }).done(function(response){
+      $(".comments").append(response);
+      event.target.reset();
+    });
+  });
 });
 </script>
 
@@ -46,22 +46,22 @@ $(document).ready(function(){
 <script>
 // normally you'd put this in a js file of course
 $(document).ready(function(){
-	$('form.json_ajax').on('submit', function(event){
-		event.preventDefault();
-		$.ajax({
-			url: event.target.action,
-			method: event.target.method,
-			data: $(event.target).serialize(),
-			dataType: 'json'
-		}).done(function(json){
-			console.log(json);
-			// the response will be json because we set data-type json
-			var html = '<li class="comment"><p>From ' + json.username + 
-			' at ' + json.created_at +
-			'  </p><p>' + json.content + '</p></li>'
-			$(".comments").append(html);
-			event.target.reset();
-		});
-	});
+  $('form.json_ajax').on('submit', function(event){
+    event.preventDefault();
+    $.ajax({
+      url: event.target.action,
+      method: event.target.method,
+      data: $(event.target).serialize(),
+      dataType: 'json'
+    }).done(function(json){
+      console.log(json);
+      // the response will be json because we set data-type json
+      var html = '<li class="comment"><p>From ' + json.username + 
+      ' at ' + json.created_at +
+      '  </p><p>' + json.content + '</p></li>'
+      $(".comments").append(html);
+      event.target.reset();
+    });
+  });
 });
 </script>
