@@ -54,8 +54,9 @@ $(document).ready(function(){
 			data: $(event.target).serialize(),
 			dataType: 'json'
 		}).done(function(json){
+			console.log(json);
 			// the response will be json because we set data-type json
-			var html = '<li class="comment"><p>From ' + json.user_id + 
+			var html = '<li class="comment"><p>From ' + json.username + 
 			' at ' + json.created_at +
 			'  </p><p>' + json.content + '</p></li>'
 			$(".comments").append(html);
