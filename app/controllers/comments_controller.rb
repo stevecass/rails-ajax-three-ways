@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       respond_to do |format|
-        format.html { }
+        format.html { render @comment, layout: false }
         format.js { }
       end
     else
