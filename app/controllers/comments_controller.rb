@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.html { render @comment, layout: false }
+        format.json { render json: @comment }
         format.js { }
       end
     else

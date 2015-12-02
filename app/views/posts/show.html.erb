@@ -17,12 +17,12 @@
   <%= f.text_area :content %>
   <%= f.submit %>
 <% end %>
+
 <script>
 // normally you'd put this in a js file of course
 $(document).ready(function(){
 	$('form.standard_ajax').on('submit', function(event){
 		event.preventDefault();
-		console.log(event.target);
 		$.ajax({
 			url: event.target.action,
 			method: event.target.method,
@@ -30,6 +30,35 @@ $(document).ready(function(){
 			dataType: 'html'
 		}).done(function(response){
 			$(".comments").append(response);
+			event.target.reset();
+		});
+	});
+});
+</script>
+
+<h3>Standard ajax returning json</h3>
+<%= form_for [@post, @comment], html:{class: :json_ajax} do |f| %>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
+
+<script>
+// normally you'd put this in a js file of course
+$(document).ready(function(){
+	$('form.json_ajax').on('submit', function(event){
+		event.preventDefault();
+		$.ajax({
+			url: event.target.action,
+			method: event.target.method,
+			data: $(event.target).serialize(),
+			dataType: 'json'
+		}).done(function(json){
+			// the response will be json because we set data-type json
+			var html = '<li class="comment"><p>From ' + json.user_id + 
+			' at ' + json.created_at +
+			'  </p><p>' + json.content + '</p></li>'
+			$(".comments").append(html);
 			event.target.reset();
 		});
 	});
